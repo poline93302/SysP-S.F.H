@@ -1,5 +1,3 @@
-
-@yield('cssLink')
 <link rel="stylesheet" href="css/SmartFarm.css" />
 <!-- font-family -->
 <link

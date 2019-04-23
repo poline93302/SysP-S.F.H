@@ -1,4 +1,4 @@
-/* Set EngileshFont,Fontsize:32px,Obj_Zero */
+header/* Set EngileshFont,Fontsize:32px,Obj_Zero */
 * {
   font-family: "Open Sans", sans-serif;
   font-family: 'cwTeXYen', sans-serif;
@@ -17,13 +17,14 @@
 
 body {
   background-color: white;
+  margin: 0;
 }
 
 header{
-  margin: 0 auto;
   padding: 15px 10% 0 10%;
   border: 0;
-  text-align: center;
+  justify-content:center;
+  align-items:center;
   background-color: #EDF4DD;
   display: flex;
   height: auto;
