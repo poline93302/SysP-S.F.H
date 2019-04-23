@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+}); laravel 測試*/
+
+Route::get('/','HomeController@index'); //連線首頁
