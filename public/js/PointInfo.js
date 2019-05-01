@@ -28,19 +28,19 @@ new Vue({
             this.$set(this.PointInfos[id], 'color', true);
         },
         handleScroll(){
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop 
-            let scroll_O  = document.body.clientHeight/6 /* scrollTop  / wind  * 100% =   window.innerHeight*0.5*/
-
-            if(scrollTop>4.5*scroll_O)
-                this.PointEvent(4);
-            else if(scrollTop>3.5*scroll_O)
-                this.PointEvent(3);
-            else if(scrollTop>2.5*scroll_O)
-                this.PointEvent(2);
-            else if(scrollTop>1.5*scroll_O)
-                this.PointEvent(1);
-            else if(scrollTop>0*scroll_O)
-                this.PointEvent(0); 
+            // let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+            // let scroll_O  = document.body.clientHeight/6 /* scrollTop  / wind  * 100% =   window.innerHeight*0.5*/
+            //
+            // if(scrollTop>4.5*scroll_O)
+            //     this.PointEvent(4);
+            // else if(scrollTop>3.5*scroll_O)
+            //     this.PointEvent(3);
+            // else if(scrollTop>2.5*scroll_O)
+            //     this.PointEvent(2);
+            // else if(scrollTop>1.5*scroll_O)
+            //     this.PointEvent(1);
+            // else if(scrollTop>0*scroll_O)
+            //     this.PointEvent(0);
         }
     },
     mixins:[Faterdata]

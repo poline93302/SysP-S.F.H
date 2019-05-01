@@ -9,23 +9,23 @@
     @include('layout.linkCss')
     @include('element.header')
     @include('element.footer')
-    @include('element.ShowContent')
+{{--    @include('element.ShowContent')--}}
     @include('element.PhotoS')
-    {{--@include('element.Elem')--}}
+    @include('element.Elem')
 <body>
 
     <header id="PointTag_0">
         @yield('hearContent')
     </header>
-        <div class = "contain">
-            <div class="ShowPart">
-                {{--影片輪播--}}
-                @yield('AniPho')
-                {{--<!-- 進入點 -->--}}
-                @yield('totalBoard')
-            </div>
+    {{-- 影片輪播--}}
+    <div class = "contain">
+        <div class="ShowPart">
+            {{--影片輪播--}}
+            @yield('AniPho')
+            {{--<!-- 進入點 -->--}}
+            @yield('totalBoard')
         </div>
-
+    </div>
     <!-- 點連結Vue -->
     @yield('PointName')
     {{--<!-- 按鈕Vue -->--}}

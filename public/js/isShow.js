@@ -9,6 +9,7 @@ let Faterdata = {
     ]},
     methods:{
         VisChage(BtnVaule){
+            //點的顯示部分 確認visble為何做出顯示
             this.ShowVisParts.forEach((ShowVisPart, k)=>{
                 BtnVaule == ShowVisPart.type? this.ShowVisParts[k].visbile = true:  this.ShowVisParts[k].visbile = false;
             })

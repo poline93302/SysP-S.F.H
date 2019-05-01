@@ -20,6 +20,8 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
-        "vue": "^2.6.10"
+        "vue": "^2.6.1",
+        "vue-resource": "^0.9.3",
+        "vue-router": "^2.0.0"
     }
 }
