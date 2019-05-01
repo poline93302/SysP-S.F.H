@@ -11,5 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/isShow.js', 'public/js/bundle/is-show.bundle.js')
+    .js('resources/js/ButtonPart.js', 'public/js/bundle/button-part.bundle.js')
+    .js('resources/js/PointInfo.js', 'public/js/bundle/point-info.bundle.js')
+;

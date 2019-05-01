@@ -6,7 +6,7 @@
         :value="BtnInfo.id"
         @click="VisChage(BtnInfo.id)"
         ><!-- 繼承問題 -->
-        {{ BtnInfo.BtnName }}
+        @{{ BtnInfo.BtnName }}
         </button>
     </div>
     <div class="holler">

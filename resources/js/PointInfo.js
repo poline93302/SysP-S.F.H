@@ -1,4 +1,5 @@
 /* Clildren:use url,title,en_title visbil ;own id,color*/
+import './isShow.js';
 let TestVueWorkingOn ="Vue working!";
 let ShowCount =0;
 new Vue({

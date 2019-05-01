@@ -1,4 +1,6 @@
 /* children :use VisChange(); own BtnName id*/
+import "./isShow.js";
+console.log("impoet");
 new Vue({
     el:'#ButtonChiled',
     data:{
