@@ -15,6 +15,7 @@ class CreateSmartLightingTable extends Migration
     {
         Schema::create('smart_lighting', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('formname');
             $table->string('sensorname');
             $table->string('mode');
             $table->integer('vaule');

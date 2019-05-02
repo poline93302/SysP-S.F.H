@@ -15,6 +15,7 @@ class CreateSmartWateringTable extends Migration
     {
         Schema::create('smart_watering', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('formname');
             $table->string('sensorname');
             $table->string('mode');
             $table->integer('vaule');

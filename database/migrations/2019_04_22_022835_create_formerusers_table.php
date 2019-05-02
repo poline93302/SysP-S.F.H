@@ -16,9 +16,10 @@ class CreateFormerUsersTable extends Migration
         Schema::create('former_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('formname');
             $table->string('email');
-            $table->rememberToken();
             $table->string('password');
+            $table->string('address');
             $table->timestamps();
         });
     }
