@@ -13,17 +13,17 @@
                         <div class="InfoSystem">
                             <!-- 系統名稱標題 -->
                             <div class="InfoTitle">
-                                <span>{{ ShowVisPart.title }}</span>
-                                <div class="InfoBitle">{{ ShowVisPart.En_title }}</div>
+                                <span>@{{ ShowVisPart.title }}</span>
+                                <div class="InfoBitle">@{{ ShowVisPart.En_title }}</div>
                             </div>
                         </div>
                         <div class="TouchBtn">
                             <!-- 滑扭動畫 -->
-                            <img src="src/img/left-shape.png" class="iconHover" />
+                            <img src="img/left-shape.png" class="iconHover" />
                             <div class="OpenTouch">
                                 <!-- 系統解說部分 -->
                                 <div class="SystemInfo">
-                                    <h4>{{ ShowVisPart.Context }}</h4>
+                                    <h4>@{{ ShowVisPart.Context }}</h4>
                                     <br />
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="holler">
-                    <img src="src/img/hr.png" />
+                    <img src="img/hr.png" />
                 </div>
             </div>
         </div>

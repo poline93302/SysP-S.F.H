@@ -99,6 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _isShow_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_isShow_js__WEBPACK_IMPORTED_MODULE_0__);
 /* children :use VisChange(); own BtnName id*/
 
+console.log("impoet");
 new Vue({
   el: '#ButtonChiled',
   data: {

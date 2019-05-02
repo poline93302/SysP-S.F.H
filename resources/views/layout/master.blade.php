@@ -9,7 +9,7 @@
     @include('layout.linkCss')
     @include('element.header')
     @include('element.footer')
-{{--    @include('element.ShowContent')--}}
+    @include('element.ShowContent')
     @include('element.PhotoS')
     @include('element.Elem')
 <body>
