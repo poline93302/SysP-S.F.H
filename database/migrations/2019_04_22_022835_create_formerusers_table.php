@@ -11,14 +11,17 @@ class CreateFormerUsersTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
+
         Schema::create('former_users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigincrements('id');
             $table->string('name');
             $table->string('formname');
             $table->string('email');
             $table->string('password');
+            $table->rememberToken();
             $table->string('address');
             $table->timestamps();
         });

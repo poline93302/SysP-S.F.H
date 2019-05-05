@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSmartWeatherTable extends Migration
+class CreateUserconfigTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateSmartWeatherTable extends Migration
      */
     public function up()
     {
-        Schema::create('smart_weather', function (Blueprint $table) {
-            $table->bigIncrements('id');;
+        Schema::create('user_config', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('formname');
             $table->string('sensorname');
             $table->string('mode');
-            $table->integer('vaule');
-            $table->dateTime('sendtime');
+            $table->integer('value');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->boolean('switch');
 
         });
     }
@@ -31,6 +33,6 @@ class CreateSmartWeatherTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('smart_weather');
+        Schema::dropIfExists('userconfig');
     }
 }

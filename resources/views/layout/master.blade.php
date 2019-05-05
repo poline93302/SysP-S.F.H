@@ -13,7 +13,6 @@
     @include('element.PhotoS')
     @include('element.Elem')
 <body>
-
     <header id="PointTag_0">
         @yield('hearContent')
     </header>

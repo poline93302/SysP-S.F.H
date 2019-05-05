@@ -19,7 +19,7 @@ class CreateSmartWateringTable extends Migration
             $table->string('sensorname');
             $table->string('mode');
             $table->integer('vaule');
-            $table->timestamps();
+            $table->dateTime('sendtime');
         });
     }
 
