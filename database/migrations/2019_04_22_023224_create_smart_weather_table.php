@@ -14,11 +14,11 @@ class CreateSmartWeatherTable extends Migration
     public function up()
     {
         Schema::create('smart_weather', function (Blueprint $table) {
-            $table->bigIncrements('id');;
+            $table->bigIncrements('id');
             $table->string('formname');
             $table->string('sensorname');
             $table->string('mode');
-            $table->integer('vaule');
+            $table->double('vaule');
             $table->dateTime('sendtime');
 
         });

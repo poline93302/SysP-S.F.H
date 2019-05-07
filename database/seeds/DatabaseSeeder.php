@@ -11,11 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
-        ]);
+//        DB::table('smart_watering')->insert([
+//            'formname'=>'jhjang',
+//            'sensorname'=>'MCV_001',
+//            'mode' => "1",
+//            'vaule' => 35,
+//            'sendtime' => ;
+//        ]);
         // $this->call(UsersTableSeeder::class);
     }
 }
