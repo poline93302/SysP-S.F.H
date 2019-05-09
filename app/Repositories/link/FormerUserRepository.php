@@ -2,7 +2,7 @@
 
 namespace App\Repositories\link;
 
-use App\Exceptions\link\FormerUser;
+use App\Entities\link\FormerUser;
 use DB;
 
 class FormerUserRepository

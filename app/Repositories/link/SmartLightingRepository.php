@@ -2,7 +2,7 @@
 
 namespace App\Repositories\link;
 
-use App\Exceptions\link\Light;
+use App\Entities\link\Light;
 use DB;
 
 class SmartLightingRepository

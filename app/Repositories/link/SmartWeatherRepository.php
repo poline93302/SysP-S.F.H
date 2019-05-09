@@ -2,7 +2,7 @@
 
 namespace App\Repositories\link;
 
-use App\Exceptions\link\Weather;
+use App\Entities\link\Weather;
 use DB;
 
 class SmartWeatherRepository

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\link;
 
-use App\Exceptions\link\UserConfig;
+use App\Entities\link\UserConfig;
 use DB;
 
 class UserConfigRepository

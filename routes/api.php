@@ -13,6 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+
+Route::get('/winwin', 'Controller@xxx');
+// http://localhost/api/winwin
+
+
+
+
+Route::post('/winwin', 'Controller@xxx');
+
+// '_method : POST'
+// '_token : document.querySelect("meta[name='csrf']").content'

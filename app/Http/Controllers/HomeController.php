@@ -18,7 +18,7 @@ class HomeController extends Controller
     //
     public  function index(){
         $data =  $this->SysInfoDB->getNowTmp();
-        dd($data);
+        dd($data['vaule']);
         return view('layout.master');
     }
 }

@@ -1,3 +1,5 @@
 {
-    "/js/bundle/is-show.bundle.js": "/js/bundle/is-show.bundle.js"
+    "/js/bundle/button-part.bundle.js": "/js/bundle/button-part.bundle.js",
+    "/js/bundle/is-show.bundle.js": "/js/bundle/is-show.bundle.js",
+    "/js/bundle/point-info.bundle.js": "/js/bundle/point-info.bundle.js"
 }

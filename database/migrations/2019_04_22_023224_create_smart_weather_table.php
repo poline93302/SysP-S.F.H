@@ -19,7 +19,7 @@ class CreateSmartWeatherTable extends Migration
             $table->string('sensorname');
             $table->string('mode');
             $table->double('vaule');
-            $table->dateTime('sendtime');
+            $table->dateTime('sendtime')->useCurrent()->nullable();
 
         });
     }

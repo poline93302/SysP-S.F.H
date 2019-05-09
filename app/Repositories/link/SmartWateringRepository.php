@@ -2,7 +2,7 @@
 
 namespace App\Repositories\link;
 
-use App\Exceptions\link\Water;
+use App\Entities\link\Water;
 use DB;
 
 class SmartWateringRepository

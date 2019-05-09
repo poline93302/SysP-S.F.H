@@ -21,7 +21,7 @@ class CreateFormerUsersTable extends Migration
             $table->string('formname');
             $table->string('email');
             $table->string('password');
-            $table->rememberToken();
+            $table->rememberToken()->nullable();
             $table->string('address');
             $table->timestamps();
         });

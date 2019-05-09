@@ -21,12 +21,12 @@ class SysInfoDBService
 
     public function __construct()
     {
-        $this->smartAir = new SmartAiringRepository();
-        $this->smartLight = new SmartLightingRepository();
+        $this->smartAir     = new SmartAiringRepository();
+        $this->smartLight   = new SmartLightingRepository();
         $this->smartWeather = new SmartWeatherRepository();
-        $this->smartWater = new SmartWateringRepository();
-        $this->formName = new FormerUserRepository();
-        $this->userConfig = new UserConfigRepository();
+        $this->smartWater   = new SmartWateringRepository();
+        $this->formName     = new FormerUserRepository();
+        $this->userConfig   = new UserConfigRepository();
     }
 
     /**
