@@ -48,16 +48,16 @@ footer >p{
   flex-wrap: wrap;
 }
 /* 進入頁面時出現的 儀表板 */
-.aboardInternat{
+#aboardInternat{
   width: 1000px;
-  margin: 50px auto;
+  margin: 100px auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 }
-.aboardInternat .aboard{
-  width:calc(80%/5);
+#aboardInternat .aboard{
+  width: 16%;
   margin: 20px;
   flex-shrink: 0;
 }

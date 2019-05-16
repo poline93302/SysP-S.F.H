@@ -20,6 +20,10 @@ class SmartLightingRepository
      */
     public function getLightLux()
     {
-        return $this->smartLighting->collection('')->get();
+        $keyword = 'LIL_';
+        return $this->smartLighting
+            ->where('sensorname','like','%'.$keyword.'%')
+            ->orderby('sendtime','desc')
+            ->paginate(20);
     }
 }

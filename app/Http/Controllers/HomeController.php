@@ -11,14 +11,13 @@ class HomeController extends Controller
 {
     protected $SysInfoDB;
 
-    public function __construct(SysInfoDBService $SyDB)
+    public function __construct()
     {
-        $this->SysInfoDB = new $SyDB;
+        $this->SysInfoDB = new SysInfoDBService;
     }
     //
     public  function index(){
-        $data =  $this->SysInfoDB->getNowTmp();
-        dd($data['vaule']);
+//        dd($this->SysInfoDB->getTmp());
         return view('layout.master');
     }
 }

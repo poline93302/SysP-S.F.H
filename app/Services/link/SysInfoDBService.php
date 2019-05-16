@@ -32,8 +32,92 @@ class SysInfoDBService
     /**
      * @return 抓取當下 tmp 值 後抓取第一筆
      */
-    public function getNowTmp()
+    public function getTmp()
     {
-        return $this->smartAir->getTmp()[0];
+        return ($this->smartAir->getTmp()[0]);
+    }
+    /**
+     * @return 抓取當下 Humi 值 後抓取第一筆
+     */
+    public function getHumi()
+    {
+        return $this->smartAir->getHumi()[0];
+    }
+    /**
+     * @return 抓取當下 CO4 值 後抓取第一筆
+     */
+    public function getCH4()
+    {
+        return $this->smartAir->getCH4()[0];
+    }
+    /**
+     * @return 抓取當下 CO 值 後抓取第一筆
+     */
+    public function getCO()
+    {
+        return $this->smartAir->getCO()[0];
+    }
+    /**
+     * @return 抓取當下 Light 值 後抓取第一筆
+     */
+    public function getLight()
+    {
+        return $this->smartLight->getLightLux()[0];
+    }
+    /**
+     * @return 抓取當下 土壤感測器 值 後抓取第一筆
+     */
+    public function getSoilHum()
+    {
+        return $this->smartWater->getSoilHum()[0];
+    }
+    /**
+     * @return 抓取當下 水位 值 後抓取第一筆
+     */
+    public function getWaterLevel()
+    {
+        return $this->smartWater->getWatLev()[0];
+    }
+    /**
+     * @return 抓取當下 PH 值 後抓取第一筆
+     */
+    public function getWaterPH()
+    {
+        return $this->smartWater->getWatPH()[0];
+    }
+    /**
+     * @return 抓取當下 微氣候溫度 值 後抓取第一筆
+     */
+    public function getOutTmp()
+    {
+        return $this->smartWeather->getOutTMP()[0];
+    }
+    /**
+     * @return 抓取當下 微氣候濕度 值 後抓取第一筆
+     */
+    public function getOutHum()
+    {
+        return $this->smartWeather->getOutHumi()[0];
+    }
+    /**
+     * @return 抓取當下 累積雨量 值 後抓取第一筆
+     */
+    public function getRainSat()
+    {
+        return $this->smartWeather->getRainSatute()[0];
+    }
+    /**
+     * @return 抓取當下 風速 值 後抓取第一筆
+     */
+    public function getWindSpeed()
+    {
+        return $this->smartWeather->getWindSpeed()[0];
+    }
+    /**
+     * @return 抓取當下 風向 值 後抓取第一筆
+     */
+    public function getWindWay()
+    {
+        return $this->smartWeather->getWindWay()[0];
     }
 }

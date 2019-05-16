@@ -40,24 +40,24 @@ class SmartAiringRepository
     /***
      * 甲烷
      */
-    public function getNowCH4()
+    public function getCH4()
     {
         $keyword = 'CHF_';
         return $this->smartAiring
             ->where('sensorname','like','%'.$keyword.'%')
             ->orderby('sendtime','desc')
-            ->paginate(1);
+            ->paginate(20);
     }
     /***
      * 一氧化碳
      */
-    public function getNowCO()
+    public function getCO()
     {
         $keyword = 'COS_';
         return $this->smartAiring
             ->where('sensorname','like','%'.$keyword.'%')
             ->orderby('sendtime','desc')
-            ->paginate(1);
+            ->paginate(20);
     }
 
 

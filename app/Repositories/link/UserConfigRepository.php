@@ -13,5 +13,15 @@ class UserConfigRepository
     {
         $this->userConfig = new  UserConfig();
     }
-
+    /*
+    * * 抓取資料
+    */
+    public function getBySomeThing()
+    {
+        $keyword = 'WSD_';
+        return $this->smartWeather
+            ->where('sensorname','like','%'.$keyword.'%')
+            ->orderby('sendtime','desc')
+            ->paginate(20);
+    }
 }

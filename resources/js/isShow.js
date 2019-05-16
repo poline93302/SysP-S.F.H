@@ -1,4 +1,6 @@
 /* Father  */
+import ShowContext from './components/ShowContext'
+
 let Faterdata = {
     data:{ 
         ShowVisParts:[/* "inside  outside  farm "  ture 1 false 0 */
@@ -15,8 +17,10 @@ let Faterdata = {
             })
         }
 }};
+
 let ShowOn = new Vue({
     el:"#ShowOn",
+    components:{ShowContext},
     mixins: [Faterdata]
 });
 

@@ -19,20 +19,32 @@ class SmartWateringRepository
      */
     public function getSoilHum()
     {
-        return $this->smartWatering->collection('')->get();
+        $keyword = 'SOH_';
+        return $this->smartWatering
+            ->where('sensorname','like','%'.$keyword.'%')
+            ->orderby('sendtime','desc')
+            ->paginate(20);
     }
      /**
      * @return 水位
      */
     public function getWatLev()
     {
-        return $this->smartWatering->collection('')->get();
+        $keyword = 'WTL_';
+        return $this->smartWatering
+            ->where('sensorname','like','%'.$keyword.'%')
+            ->orderby('sendtime','desc')
+            ->paginate(20);
     }
     /**
      * @return 水PH
      */
     public function getWatPH()
     {
-        return $this->smartWatering->collection('')->get();
+        $keyword = 'WTP_';
+        return $this->smartAiring
+            ->where('sensorname','like','%'.$keyword.'%')
+            ->orderby('sendtime','desc')
+            ->paginate(20);
     }
 }
