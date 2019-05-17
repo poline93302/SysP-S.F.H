@@ -1,8 +1,6 @@
 <template>
-<!--    <div class="isShow" id="ShowOn">-->
-<!--        <div v-for="ShowVisPart in showVisParts">-->
             <div v-show="showVisPart.visbile">
-                @{{showVisPart}}
+<!--                @{{showVisPart}}-->
                 <div class="contain" :id="showVisPart.url">
                     <div class="ShowPart flex">
                         <div class="InfoSystemBottom">
@@ -17,8 +15,8 @@
                         <div class="InfoSystem">
                             <!-- 系統名稱標題 -->
                             <div class="InfoTitle">
-                                <span>@{{ showVisPart.title }}</span>
-                                <div class="InfoBitle">@{{ showVisPart.En_title }}</div>
+                                <span>{{ showVisPart.title }}</span>
+                                <div class="InfoBitle">{{ showVisPart.En_title }}</div>
                             </div>
                         </div>
                         <div class="TouchBtn">
@@ -27,7 +25,7 @@
                             <div class="OpenTouch">
                                 <!-- 系統解說部分 -->
                                 <div class="SystemInfo">
-<!--                                    <h4>@{{ showVisPart.Context }}</h4>-->
+                                    <div>{{Context}}</div>
                                     <br />
                                 </div>
                             </div>
@@ -61,5 +59,8 @@
                 }
             },
         },
+        // data:[
+        //     {title: this.showVisPart.title,api :"",Context : ""},   //water => getApi , name , context
+        // ]
     }
 </script>

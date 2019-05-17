@@ -1,8 +1,8 @@
 /* Father  */
-import ShowContext from './components/ShowContext'
+import showcontext from './components/ShowContext'
 
-let Faterdata = {
-    data:{ 
+var Faterdata = {
+    data:{
         ShowVisParts:[/* "inside  outside  farm "  ture 1 false 0 */
         {id : 1,url : 'PointTag_1',title : '智能灑水系統', En_title : 'SmartWateing'  , type : 3, visbile : false},
         {id : 2,url : 'PointTag_2',title : '智能燈泡系統', En_title : 'SmartLighting' , type : 3, visbile : false},
@@ -17,14 +17,16 @@ let Faterdata = {
             })
         }
 }};
+let TestVueWorkingOn ="Vue working!";
+let ShowCount =0;
 
 let ShowOn = new Vue({
     el:"#ShowOn",
-    components:{ShowContext},
+    components:{showcontext},
     mixins: [Faterdata]
 });
 
-new Vue({
+let BtnInfo = new Vue({
     el:'#ButtonChiled',
     data:{
         BtnInfos :[
@@ -35,9 +37,8 @@ new Vue({
     },
     mixins: [Faterdata]
 });
-let TestVueWorkingOn ="Vue working!";
-let ShowCount =0;
-new Vue({
+
+let Point = new Vue({
     el:'#TagPointPage',
     data:{
         windowY : 0

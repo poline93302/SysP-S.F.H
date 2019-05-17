@@ -3,7 +3,7 @@ import _ from 'lodash'
 // import * as Vue from 'vue'
 // import DrowInfo from 'drow'
 
-let apiNames = [//api 抓取ＡＰＩ部分 boardName 該borad之d3搜尋後產生檔案 name 該borad 之 名稱
+export let apiNames = [//api 抓取ＡＰＩ部分 boardName 該borad之d3搜尋後產生檔案 name 該borad 之 名稱
     {api: 'getOnTmp', boardName: 'TempAbo', name: '溫度', val: 0},
     {api: 'getOnHum', boardName: 'RelHumAbo', name: '相對濕度', val: 0},
     {api: 'getOnWaL', boardName: 'WatLevAbo', name: '水位', val: 0},
