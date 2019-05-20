@@ -35,10 +35,13 @@
     <div class="ShowPart AutoCenter">
         <img src="img/aboardhr.png" />
         <div id="aboardInternat">
-            <div v-for = "apiName in apiNames" class="aboard" :id="apiName.boardName" @click="getApi">
-                @{{apiName.name}}<br/>
-                @{{apiName.val }}
-
+            <div v-for = "apiName in apiNames" class="aboard">
+                <div v-if = "apiName.img!= null ">
+                    <img :src="apiName.img" :alt="apiName.name" :title="apiName.name" width="160px" height="160px"/>
+                </div>
+                <div v-else>
+                    <svg :id="apiName.boardName" width="160px" height="160px" :value = "apiName.val"></svg>
+                </div>
             </div>
         </div>
     </div>

@@ -25,7 +25,7 @@
                             <div class="OpenTouch">
                                 <!-- 系統解說部分 -->
                                 <div class="SystemInfo">
-                                    <div>{{Context}}</div>
+<!--                                    <div>{{Context}}</div>-->
                                     <br />
                                 </div>
                             </div>
