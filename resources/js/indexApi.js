@@ -1,19 +1,22 @@
 import * as axios from 'axios'
 import _ from 'lodash'
 // import * as Vue from 'vue'
-import {DrowInfo,WaterLevelChar,DoardChar,LightChange,WindpointerChar}from './drow.js'
+import {DrowInfo,WaterLevelChar,DoardChar,LightChange,WindpointerChar,DoardChardot}from './drow.js'
 
 export let apiNames = [//api 抓取ＡＰＩ部分 boardName 該borad之d3搜尋後產生檔案 name 該borad 之 名稱
-    {api: 'getOnTmp', boardName: 'TempAbo', name: '溫度', val: 0,img:null},
-    {api: 'getOnHum', boardName: 'RelHumAbo', name: '相對濕度', val: 0,img:null},
-    {api: 'getOnWaL', boardName: 'WatLevAbo', name: '水位狀態', val: 0,img:null},
-    {api: 'getOnMet', boardName: 'MetAbo', name: '甲烷', val: 0,img:null},
-    {api: 'getOnCoA', boardName: 'CoAbo', name: '一氧化碳', val: 0,img:null},
-    {api: 'getOnLig', boardName: 'LightAbo', name: '燈泡狀態', val: 0,img:null},
-    {api: 'getOnCum', boardName: 'CumWaAbo', name: '累積雨量', val: 0,img:null},
-    {api: 'getOnWid', boardName: 'WindWayAbo', name: '風向', val: 0,img:null}
+    {api: 'getOnTmp', boardName: 'TempAbo'  , name: '溫度'      , val: 0,img:null ,unit:'℃'},
+    {api: 'getOnHum', boardName: 'RelHumAbo', name: '相對濕度'  , val: 0,img:null,unit:'%'},
+    {api: 'getOnMet', boardName: 'MetAbo'   , name: '甲烷'      , val: 0,img:null,unit:'%'},
+    {api: 'getOnCoA', boardName: 'CoAbo'    , name: '一氧化碳'  , val: 0,img:null,unit:'ppm'},
+    {api: 'getOnCum', boardName: 'CumWaAbo' , name: '累積雨量'  , val: 0,img:null,unit:'mm'},
+    {api: 'getOnWPH', boardName: 'WatPHSt'  , name: '水中酸鹼'  , val: 0,img:null,unit:'PH'},
+    {api: 'getOnSHu', boardName: 'WatSoi'   , name: '土壤濕度'  , val: 0,img:null,unit:'%'},
+    {api: 'getOnRin', boardName: 'RinPro'   , name: '降雨機率'  , val: 0,img:null,unit:'%'},
+    {api: 'getOnWaL', boardName: 'WatLevAbo', name: '水位狀態'  , val: 0,img:null,unit:""},//
+    {api: 'getOnWid', boardName: 'WindSpeed', name: '風向'     , val: 0,img:null,unit:""},//
+    {api: 'getOnLig', boardName: 'LightAbo' , name: '燈泡狀態'  , val: 0,img:null,unit:""}//
 ];
-let MaxTop = [50,20,30,50,10,50,60,60];
+let MaxTop = [48,100,9,800,60,15,100,100,0,0,150];
 let drowInfo  = [];
 let indexApi = new Vue({
     el: "#aboardInternat",
@@ -44,32 +47,31 @@ let indexApi = new Vue({
             // console.log(this.apiNames);
             // 丟入 drowInfo 開始畫圖
             console.log("1min")
+
         },
         postDataToChar(){
             _.forEach(this.apiNames,function (i,index){
-                drowInfo[index] = new DrowInfo(i.api,i.boardName,i.val,MaxTop[index],i.name);
+                drowInfo[index] = new DrowInfo(i.api,i.boardName,i.val,MaxTop[index],i.name,i.unit);
             });
-            DoardChar(drowInfo[0]);
-            DoardChar(drowInfo[1]);
-            apiNames[2].img = WaterLevelChar(drowInfo[2]);
-            DoardChar(drowInfo[3]);
-            DoardChar(drowInfo[4]);
-            apiNames[5].img = LightChange(drowInfo[5]);
-            DoardChar(drowInfo[6]);
-            WindpointerChar(drowInfo[7]);
+            DoardChar(drowInfo[0]);     //溫度
+            DoardChar(drowInfo[1]);//濕度
+            DoardChar(drowInfo[2]);//甲烷
+            DoardChar(drowInfo[3]);//一氧化碳
+            DoardChar(drowInfo[4]);//累積雨量
+            DoardChardot(drowInfo[5]);//水中酸鹼
+            DoardChar(drowInfo[6]);//土壤濕度
+            DoardChar(drowInfo[7]);//降雨機率
+            apiNames[8].img = WaterLevelChar(drowInfo[8]);//水位
+            WindpointerChar(drowInfo[9]);//風向
+            apiNames[10].img = LightChange(drowInfo[10]);//亮度
         },
     },
-    //
-    // updated(){  //更新圖檔
-    //     this.postDataToChar();
-    // },
     created(){
         this.getApi();
     },
     mounted() {
         setInterval(this.getApi, 60000);
-        setInterval(this.postDataToChar,61000);
-        console.log("mounted")
+        // console.log("mounted")
     },
     updated(){
         this.postDataToChar();

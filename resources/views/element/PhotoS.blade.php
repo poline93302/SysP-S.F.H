@@ -40,7 +40,10 @@
                     <img :src="apiName.img" :alt="apiName.name" :title="apiName.name" width="160px" height="160px"/>
                 </div>
                 <div v-else>
-                    <svg :id="apiName.boardName" width="160px" height="160px" :value = "apiName.val"></svg>
+                    <svg :id="apiName.boardName" :value = "apiName.val"></svg>
+{{--                    <span>@{{apiName.val}}</span><br>--}}
+                    <br>
+                    <p style="line-height: 5px">@{{apiName.name}}  </p>
                 </div>
             </div>
         </div>

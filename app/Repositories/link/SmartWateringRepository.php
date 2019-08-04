@@ -42,7 +42,7 @@ class SmartWateringRepository
     public function getWatPH()
     {
         $keyword = 'WTP_';
-        return $this->smartAiring
+        return $this->smartWatering
             ->where('sensorname','like','%'.$keyword.'%')
             ->orderby('sendtime','desc')
             ->paginate(20);

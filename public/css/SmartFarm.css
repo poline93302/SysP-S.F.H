@@ -33,9 +33,9 @@ footer{
   text-align: center;
   padding: 20px;
   height: auto;
-  }
+}
 footer >p{
-  font-family: "Open Sans", sans-serif; 
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   line-height: 20px;
 }
@@ -72,7 +72,7 @@ footer >p{
 }
 .TagPart li{
   text-align:center;
-  list-style:none;  
+  list-style:none;
   float:left;
 }
 .TagPart li a{
@@ -105,7 +105,7 @@ footer >p{
   margin: 0 auto;
 }
 .InserPartSystem button{
-  outline: none;  
+  outline: none;
   width: 20%;
   margin: 15px auto;
   background-color: darkgreen;
@@ -128,7 +128,7 @@ footer >p{
   height: auto;
   align-content: center;
   background-color: #B1E2A7;
-  
+
 }
 /* 照片輪播 */
 .PhotoShow{
@@ -139,9 +139,9 @@ footer >p{
 }
 .PhotoShow div{
   position: absolute;
-  left: 2%; 
+  left: 2%;
   margin:0 auto;
-  opacity: 0; 
+  opacity: 0;
   filter: alpha(opacity = 0);
   animation: PageShowRound 12s linear infinite;
 }
@@ -161,15 +161,15 @@ footer >p{
 
 /* 連頁部分 */
 .TagOut{
-    background-color: aquamarine;
-    height: auto;
-    padding: 10px 15px 10px 15px;
-    position: fixed;
-    z-index: 101;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    top: 10px;
+  background-color: aquamarine;
+  height: auto;
+  padding: 10px 15px 10px 15px;
+  position: fixed;
+  z-index: 101;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  top: 10px;
 }
 /*         */
 
@@ -185,11 +185,11 @@ footer >p{
 /* 放置儀錶板內容 */
 .InfoSystemBottom{
   background-color:  #EFF1D5;
-  width:30%; 
+  width:30%;
   min-height: 600px;
   height: auto;
   padding: 70px  1% 15px 1%;
-  
+
   position: absolute;
   top:60px;
   margin: 0 auto;
@@ -204,7 +204,7 @@ footer >p{
 /* 儀錶板規劃 */
 .aboard{
   background-color:white;
-  padding: 20px; 
+  padding: 20px;
   height: 150px;
   width: 150px;
   border-radius: 50%;
@@ -216,6 +216,21 @@ footer >p{
 .aboard:hover{
   background-color: lightslategray;
 }
+
+.aboard-Info{
+  background-color:white;
+  height: 150px;
+  width: 165px;
+  border-radius: 50%;
+  text-align: center;
+  margin : 10px;
+  padding-top: 15px;
+}
+
+.aboard-Info:hover{
+  background-color: #98dfb6;
+}
+
 
 .iconHover{
   transition: all 0.5s linear ;
@@ -250,7 +265,7 @@ footer >p{
   display: block;
   width: auto;
   animation: 2s Fade;
-}  
+}
 .TouchBtn:hover .iconHover{
   transform: rotate(180deg);
 }
@@ -259,10 +274,11 @@ footer >p{
 .OpenTouch{
   width: 0%;
   min-height: 600px;
-} 
+}
 /* 系統解說部分 */
 .SystemInfo{
   display: none;
+  overflow: auto;
   font-family: 'cwTeXYen', sans-serif;
 }
 
@@ -294,10 +310,10 @@ footer >p{
   0%{
     opacity: 0;
   }70%{
-    opacity: 0;
-  }100%{
-    opacity: 1;
-  }
+     opacity: 0;
+   }100%{
+      opacity: 1;
+    }
 }
 
 @keyframes PageShowRound{

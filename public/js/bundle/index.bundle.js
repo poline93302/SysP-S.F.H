@@ -1836,8 +1836,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShowContext",
   props: {
@@ -1852,14 +1850,41 @@ __webpack_require__.r(__webpack_exports__);
           url: "PointTag_100",
           title: "無",
           En_title: "No Find Data",
+          bord: [],
           type: 3,
           visbile: true
         };
       }
     }
+  },
+  methods: {
+    openSelfFile: function openSelfFile(path) {
+      //路徑定義
+      var realpath = 'http://localhost:8000/selftxt/' + path + 'Self.txt'; //利用fetch得到 txt 內文（嘗試 利用txt 書寫html） !!:key:!! fetch return Promise
+
+      fetch(realpath, {
+        method: 'GET',
+        headers: new Headers({
+          'Content-Type': 'text/html'
+        })
+      }).then(function (res) {
+        //create Promise 抓出 text
+        var promiseObjText = Promise.resolve(res.text());
+        promiseObjText.then(function (v) {
+          //抓取place document
+          var InfoPlacer = document.getElementById(path + 'Info');
+          InfoPlacer.innerHTML = v;
+        });
+      })["catch"](function (err) {
+        console.log('Error By' + err);
+      });
+    },
+    getItemName: function getItemName(item) {
+      if (item !== ' ') return '/img/' + item + '.png';
+    }
   } // data:[
   //     {title: this.showVisPart.title,api :"",Context : ""},   //water => getApi , name , context
-  // ]
+  // ]B
 
 });
 
@@ -66162,7 +66187,36 @@ var render = function() {
         { staticClass: "contain", attrs: { id: _vm.showVisPart.url } },
         [
           _c("div", { staticClass: "ShowPart flex" }, [
-            _vm._m(0),
+            _c(
+              "div",
+              { staticClass: "InfoSystemBottom" },
+              _vm._l(_vm.showVisPart.bord, function(item, index) {
+                return _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: item != "",
+                        expression: "item != ''"
+                      }
+                    ],
+                    staticClass: "aboard-Info"
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.getItemName(item),
+                        width: "120px",
+                        height: "120px"
+                      }
+                    })
+                  ]
+                )
+              }),
+              0
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "InfoSystem" }, [
               _c("div", { staticClass: "InfoTitle" }, [
@@ -66174,51 +66228,38 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "TouchBtn" }, [
+              _c("img", {
+                staticClass: "iconHover",
+                attrs: { src: "img/left-shape.png" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "OpenTouch" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "SystemInfo",
+                    attrs: { id: _vm.showVisPart.En_title + "Info" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.openSelfFile(_vm.showVisPart.En_title)) +
+                        "\n                        "
+                    )
+                  ]
+                )
+              ])
+            ])
           ])
         ]
       ),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(0)
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "InfoSystemBottom" }, [
-      _c("div", { staticClass: "aboard" }, [_vm._v("水量")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "aboard" }, [
-        _vm._v("水"),
-        _c("br"),
-        _vm._v("PH值")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "aboard" }, [
-        _vm._v("土壤"),
-        _c("br"),
-        _vm._v("濕度")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "TouchBtn" }, [
-      _c("img", {
-        staticClass: "iconHover",
-        attrs: { src: "img/left-shape.png" }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "OpenTouch" }, [
-        _c("div", { staticClass: "SystemInfo" }, [_c("br")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -78395,7 +78436,11 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]); // import * as apiNames from 'indexApi';
+Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]); // Vue.component()
+// Vue.component('showontext', require('./components/ShowContext.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// import * as apiNames from 'indexApi';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -78609,7 +78654,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************!*\
   !*** ./resources/js/drow.js ***!
   \******************************/
-/*! exports provided: DrowInfo, DoardChar, WaterLevelChar, LightChange, WindpointerChar, LineTw */
+/*! exports provided: DrowInfo, DoardChar, WaterLevelChar, LightChange, WindpointerChar, DoardChardot, LineTw */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -78619,14 +78664,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WaterLevelChar", function() { return WaterLevelChar; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LightChange", function() { return LightChange; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WindpointerChar", function() { return WindpointerChar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DoardChardot", function() { return DoardChardot; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LineTw", function() { return LineTw; });
 /* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! d3 */ "./node_modules/d3/index.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 
 var DrowInfo = function DrowInfo(id, d3Scale, data) {
   var max = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
   var title = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '無標題';
+  var unit = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : " ";
 
   _classCallCheck(this, DrowInfo);
 
@@ -78635,36 +78685,276 @@ var DrowInfo = function DrowInfo(id, d3Scale, data) {
   this.data = data;
   this.max = max;
   this.title = title;
+  this.unit = unit;
 }; //儀表板 溫度 相對濕度 甲烷 一氧化碳 累積雨量
 
 function DoardChar(drowInfo) {
-  //svg 搜尋
-  var svg = d3__WEBPACK_IMPORTED_MODULE_0__["select"]('#' + drowInfo.id).attr('height', '100%').attr('width', '100%');
-  var height = svg.node().getBoundingClientRect().height; //高
+  // console.log("Doard");
+  var size = 160; //寬與長
 
-  var width = svg.node().getBoundingClientRect().width; //寬
+  var max = drowInfo.max;
+  var min = 0;
+  var cx = size / 2; //設定圓心x
+
+  var cy = size / 2; //設定圓心y
+
+  var range = max - min; //最大值-最小值
+
+  var salfrang = range / 3;
+  var Watchfrang = range / 3 * 2;
+  var radius = size * 0.97 / 2; //半徑
+
+  var greenColor = "#00cc00";
+  var yellowColor = "#FF9900";
+  var redColor = "#DC3912";
+  var Rr = 60;
+  var duration = 500; //動畫時間
+
+  var data = drowInfo.data; //當下數值
+  //svg 搜尋
+
+  var svg = d3__WEBPACK_IMPORTED_MODULE_0__["select"]('#' + drowInfo.d3Scale).attr('height', size + 'px').attr('width', size + 'px'); //-60度 開始 計算 算出此val 數值佔多少份 一份 ＝3度 (dara/rang)*300 後 轉徑度 即可得x,y
+
+  var pointerStart = [{
+    x: cx,
+    y: cy
+  }, {
+    x: cx - Rr * Math.cos((-60 + data / range * 300) / 180 * Math.PI),
+    y: cy - Rr * Math.sin((-60 + +data / range * 300) / 180 * Math.PI)
+  }];
+  var pointerLine = d3__WEBPACK_IMPORTED_MODULE_0__["line"]() //曲線生長
+  .x(function (d) {
+    return d.x;
+  }).y(function (d) {
+    return d.y;
+  }); // svg? console.log('#'+drowInfo.d3Scale + "DoardSuccess"):""; //確認此圖是否抓取到
+  // pointerCon? console.log(pointerCon + "pointerConSuccess"):""; //確認此圖是否抓取到
+
+  svg.selectAll('*').remove(); //清除舊圖
+
+  svg.append("circle") //設定外圓
+  .attr("cx", cx).attr("cy", cy).attr("r", radius).style("fill", "#E2F7C5") //填色
+  .style("stroke", "#ffff") //邊界顏色
+  .style("stroke-width", "0.5px"); //邊界粗度
+
+  svg.append("circle") //設定內圓
+  .attr("cx", cx).attr("cy", cy).attr("r", 0.8 * radius).style("fill", "#fff") //填色
+  .style("stroke", "#9DDF41") //邊界顏色
+  .style("stroke-width", "2px"); //邊界粗度
+
+  svg.append("path").style("fill", greenColor).attr("d", d3__WEBPACK_IMPORTED_MODULE_0__["arc"]().startAngle(-60 * Math.PI / 180) //弧長 綠色
+  .endAngle(40 * Math.PI / 180) //綠色 結束
+  .innerRadius(0.65 * radius) //內徑
+  .outerRadius(0.85 * radius)) //外徑
+  .attr("transform", function () {
+    return "translate(" + cx + "," + cy + ") rotate(270)";
+  });
+  svg.append("path").style("fill", yellowColor).attr("d", d3__WEBPACK_IMPORTED_MODULE_0__["arc"]().startAngle(40 * Math.PI / 180) //弧長 黃色
+  .endAngle(140 * Math.PI / 180) //黃色 結束
+  .innerRadius(0.65 * radius) //內徑
+  .outerRadius(0.85 * radius)) //外徑
+  .attr("transform", function () {
+    return "translate(" + cx + "," + cy + ") rotate(270)";
+  });
+  svg.append("path").style("fill", redColor).attr("d", d3__WEBPACK_IMPORTED_MODULE_0__["arc"]().startAngle(140 * Math.PI / 180) //弧長 紅色
+  .endAngle(240 * Math.PI / 180) //紅色 結束
+  .innerRadius(0.65 * radius) //內徑
+  .outerRadius(0.85 * radius)) //外徑
+  .attr("transform", function () {
+    return "translate(" + cx + "," + cy + ") rotate(270)";
+  });
+  svg.append('path').style('fill', '#fff').attr("d", d3__WEBPACK_IMPORTED_MODULE_0__["arc"]().startAngle(240 * Math.PI / 180).endAngle(300 * Math.PI / 180).innerRadius(0.75 * radius).outerRadius(radius)).attr("transform", function () {
+    return "translate(" + cx + "," + cy + ") rotate(270)";
+  }).style("stroke", "#fff") //邊界顏色
+  .style("stroke-width", "0.5px"); //邊界粗度
+
+  svg.append('text') //單位
+  .attr('x', cx).attr('y', 45).attr('dy', size * 2 / 3).attr('text-anchor', "middle").text(data + " " + drowInfo.unit).style('font-size', 18 + "px").style('fill', "#123123").style('strok-width', "1px");
+  svg.append('circle') //圓弧中心
+  .attr('cx', cx).attr('cy', cy).attr('r', 4).style('fill', '#fff').style("stroke", "#9DDF41") //邊界顏色
+  .style("stroke-width", "1px"); //邊界粗度
+  //標記大小中段值
+
+  svg.append('text').attr('x', cx - 25).attr('y', size - 40).style('font-size', 10 + 'px').text(min);
+  svg.append('text').attr('x', cx - 35).attr('y', cy - 20).style('font-size', 10 + 'px').text(Math.floor(salfrang));
+  svg.append('text').attr('x', cx + 30).attr('y', cy - 20).style('font-size', 10 + 'px').text(Math.floor(Watchfrang));
+  svg.append('text').attr('x', cx + 16).attr('y', size - 40).style('font-size', 10 + 'px').style('text-align', 'right').text(max);
+  svg.append('g').attr('class', 'pointerLaa'); //指針群組
+
+  var pointerConAni = svg.select(".pointerLaa"); //指針畫布指向
+
+  pointerConAni.append('path') //指針設置
+  .attr('d', pointerLine(pointerStart)).style('fill', '#dc3').style("stroke", "#c63310") //轮廓的颜色
+  .style('stroke-width', '2px').style("fill-opacity", 2); //填充的透明度
+  //
+
+  pointerConAni.transition().duration(duration);
+  pointerConAni.append('circle') //指針中心
+  .attr('cx', cx).attr('cy', cy).attr('r', 3).style('fill', '#F2FF83').style("stroke", "#9DDF41") //邊界顏色
+  .style("stroke-width", "0.5px"); //邊界粗度
+  // pointerConAni?console.log("Success"):console.log("error");
 }
 ; //水位圖（開關）改圖即可
 
 function WaterLevelChar(drowInfo) {
   var imgUrl;
-  drowInfo.data != 0 ? imgUrl = './img/WaterLevOn.svg' : imgUrl = './img/WaterLevOff.svg';
+  drowInfo.data != drowInfo.max ? imgUrl = './img/WaterLevOn.svg' : imgUrl = './img/WaterLevOff.svg';
   return imgUrl;
 }
 ; //燈泡更換 （開關）改圖即可
 
 function LightChange(drowInfo) {
   var imgUrl;
-  drowInfo.data >= 150 ? imgUrl = './img/LightOn.svg' : imgUrl = './img/LightOff.svg';
+  drowInfo.data >= drowInfo.max ? imgUrl = './img/LightOn.svg' : imgUrl = './img/LightOff.svg';
   return imgUrl;
 }
 ; //風向 指針 變換方向
 
-function WindpointerChar(drowInfo) {}
-; //折線圖 抓取20筆
+function WindpointerChar(drowInfo) {
+  var data = drowInfo.data + 360;
+  var pointerData = [{
+    x: 80,
+    y: 30
+  }, {
+    x: 55,
+    y: 110
+  }, {
+    x: 80,
+    y: 80
+  }, {
+    x: 105,
+    y: 110
+  }];
+  var size = 160;
+  var cx = size / 2;
+  var cy = size / 2;
+  var scaleLag = 8; // N NW W WS S SE E EN
+
+  var scaleSml = 2; //每大格分 兩小格
+
+  var radius = size * 0.97 / 2;
+  var indexGo = 0;
+  var spinWay = ['N', 'EN', 'E', 'ES', 'S', 'WS', 'W', 'WN']; //
+
+  var majorDelta = 360 / scaleLag; //大刻度之间的角度
+
+  var svg = d3__WEBPACK_IMPORTED_MODULE_0__["select"]('#' + drowInfo.d3Scale).attr('height', size + 'px').attr('width', size + 'px');
+  var textStartMin = 4;
+  var textStartMax = 45 - textStartMin;
+  var line = d3__WEBPACK_IMPORTED_MODULE_0__["line"]().x(function (d) {
+    return d.x;
+  }).y(function (d) {
+    return d.y;
+  }); // let pie = d3.layout.pie()
+  //     .startAngle(0)
+  //     .endAngle()
+
+  svg.append('circle') //底色黑底
+  .attr('cx', cx).attr('cy', cy).attr('r', radius).style('fill', '#000');
+  svg.append('circle') //蓋底
+  .attr('cx', cx).attr('cy', cy).attr('r', 0.75 * radius).style('fill', '#fff');
+  svg.append('path') //不動針
+  .attr('d', line(pointerData)).attr('y', 0).style('stroke', '#fff').style('stroke-width', '1px').style('fill', "#ff0000");
+  svg.append('circle') //針圓心
+  .attr('cx', cx).attr('cy', cy).attr('r', 0.05 * radius).style('fill', '#fff'); //{     刻度
+
+  for (var major = data; major <= data + 315; major += majorDelta) {
+    var minMajor = majorDelta / scaleSml;
+    var getStartPointLag = getPoint(major, 0.85, 80, cx, cy);
+
+    for (var minMajorDe = major; minMajorDe <= major + minMajor; minMajorDe += minMajor) {
+      var getStartPoint = getPoint(minMajorDe, 0.9, radius, cx, cy);
+      var getEndPoint = getPoint(minMajorDe, 0.8, radius, cx, cy);
+
+      if (minMajorDe % 45) {
+        svg.append('line').attr('x1', getStartPoint.Px).attr('y1', getStartPoint.Py).attr('x2', getEndPoint.Px).attr('y2', getEndPoint.Py).style('stroke', "#fff").style('stroke-width', "1px");
+      }
+    }
+
+    svg.append('path').attr('d', d3__WEBPACK_IMPORTED_MODULE_0__["arc"]() //架設路徑
+    .startAngle((major - textStartMin) / 180 * Math.PI).endAngle((major + textStartMax) / 180 * Math.PI).innerRadius(0.80 * radius).outerRadius(0.75 * radius)).attr("transform", function () {
+      return "translate(" + cx + "," + cy + ")";
+    }).style("fill", 'none').attr('id', 'pathText_' + indexGo);
+    svg.append('text').append('textPath').attr('link:href', "#pathText_" + indexGo).style('fill', '#fff').style('font-size', "12px").text(spinWay[indexGo]);
+    indexGo++;
+  } //}
+  // console.log(data);
+
+}
+; //酸鹼值 pi
+
+function DoardChardot(drowInfo) {
+  var size = 160; //寬與長
+
+  var max = 90;
+  var min = -90;
+  var meg = min;
+  var range = 15;
+  var data = drowInfo.data;
+  var radius = size / 2;
+  var svg = d3__WEBPACK_IMPORTED_MODULE_0__["select"]('#' + drowInfo.d3Scale).attr('height', size + 'px').attr('width', size + 'px');
+  var color_bar = 0;
+  var color_style = ['#ff0000', '#BB493E', '#A16B36', '#B9BB3E', '#ffff00', '#8ABF40', '#00ff7d', '#47c250', '#76c44f', '#328E2F', '#308991', '#339699', '#3749a4', '#0000ff', '#69349d']; //角度表
+
+  var bar_dela = [6, 18, 30, 42, 54, 66, 78, 90, 102, 114, 126, 138, 150, 162, 174];
+  var pointerLine = d3__WEBPACK_IMPORTED_MODULE_0__["line"]() //曲線生長
+  .x(function (d) {
+    return d.x;
+  }).y(function (d) {
+    return d.y;
+  });
+
+  for (meg; meg !== max; meg += 12) {
+    svg.append('path').attr('d', d3__WEBPACK_IMPORTED_MODULE_0__["arc"]().startAngle(meg / 180 * Math.PI).endAngle((meg + 12) / 180 * Math.PI).innerRadius(0.5 * radius).outerRadius(0.85 * radius)).attr("transform", function () {
+      return "translate(" + 80 + "," + 80 + ")";
+    }).style('stroke', "#fff").style('stroke-radius', '10px').style('stroke-width', "1px").style('z-index', 1).style('fill', color_style[color_bar]).attr('id', 'PHText_' + color_bar);
+    color_bar++;
+  }
+
+  svg.append('text').attr('x', 0).attr('y', 80).style('fill', '#000').style('font-size', "12px").text(0);
+  svg.append('text').attr('x', 25).attr('y', 37).attr('rotate', -45).style('fill', '#000').style('font-size', "12px").text(3);
+  svg.append('text').attr('x', 78).attr('y', 10).attr('rotate', 0).style('fill', '#000').style('font-size', "12px").text(7);
+  svg.append('text').attr('x', 120).attr('y', 25).attr('rotate', 45).style('fill', '#000').style('font-size', "12px").text(10);
+  svg.append('text').attr('x', 148).attr('y', 80).style('fill', '#000').style('font-size', "12px").text(14);
+  svg.append('text') //單位
+  .attr('x', 80).attr('y', 45).attr('dy', size * 2 / 3).attr('text-anchor', "middle").text(drowInfo.unit + " " + data).style('font-size', 18 + "px").style('fill', "#123123").style('strok-width', "1px");
+  svg.append('circle') //圓弧中心
+  .attr('cx', 80).attr('cy', 80).attr('r', 4).style('fill', '#fff').style("stroke", "#9DDF41") //邊界顏色
+  .style("stroke-width", "1px"); //邊界粗度
+
+  svg.append('g').attr('class', 'pointerCon'); //指針群組
+
+  var pointerStart = [{
+    x: 80,
+    y: 80
+  }, {
+    x: 80 - 70 * Math.cos(bar_dela[data] / 180 * Math.PI),
+    y: 80 - 70 * Math.sin(bar_dela[data] / 180 * Math.PI)
+  }];
+  var pointerConAni = svg.select(".pointerCon"); //指針畫布指向
+
+  pointerConAni.append('path') //指針設置
+  .attr('d', pointerLine(pointerStart)).style('fill', '#dc3').style("stroke", "#c63310") //轮廓的颜色
+  .style('stroke-width', '2px').style('z-index', 100).style("fill-opacity", 2); //填充的透明度
+
+  pointerConAni.append('circle') //指針中心
+  .attr('cx', 80).attr('cy', 80).attr('r', 3).style('fill', '#F2FF83').style("stroke", "#9DDF41") //邊界顏色
+  .style("stroke-width", "0.5px") //邊界粗度
+  .style('z-index', 200);
+} //折線圖 抓取20筆
 
 function LineTw(drowInfo) {}
-;
+; //儀表板得到點
+
+function getPoint(delta, bap, rad, cx, cy) {
+  //角度
+  var x = cx - bap * rad * Math.cos(delta / 180 * Math.PI);
+  var y = cy - bap * rad * Math.sin(delta / 180 * Math.PI);
+  return {
+    Px: x,
+    Py: y
+  };
+}
 
 /***/ }),
 
@@ -78693,51 +78983,83 @@ var apiNames = [//api 抓取ＡＰＩ部分 boardName 該borad之d3搜尋後產�
   boardName: 'TempAbo',
   name: '溫度',
   val: 0,
-  img: null
+  img: null,
+  unit: '℃'
 }, {
   api: 'getOnHum',
   boardName: 'RelHumAbo',
   name: '相對濕度',
   val: 0,
-  img: null
-}, {
-  api: 'getOnWaL',
-  boardName: 'WatLevAbo',
-  name: '水位狀態',
-  val: 0,
-  img: null
+  img: null,
+  unit: '%'
 }, {
   api: 'getOnMet',
   boardName: 'MetAbo',
   name: '甲烷',
   val: 0,
-  img: null
+  img: null,
+  unit: '%'
 }, {
   api: 'getOnCoA',
   boardName: 'CoAbo',
   name: '一氧化碳',
   val: 0,
-  img: null
-}, {
-  api: 'getOnLig',
-  boardName: 'LightAbo',
-  name: '燈泡狀態',
-  val: 0,
-  img: null
+  img: null,
+  unit: 'ppm'
 }, {
   api: 'getOnCum',
   boardName: 'CumWaAbo',
   name: '累積雨量',
   val: 0,
-  img: null
+  img: null,
+  unit: 'mm'
 }, {
+  api: 'getOnWPH',
+  boardName: 'WatPHSt',
+  name: '水中酸鹼',
+  val: 0,
+  img: null,
+  unit: 'PH'
+}, {
+  api: 'getOnSHu',
+  boardName: 'WatSoi',
+  name: '土壤濕度',
+  val: 0,
+  img: null,
+  unit: '%'
+}, {
+  api: 'getOnRin',
+  boardName: 'RinPro',
+  name: '降雨機率',
+  val: 0,
+  img: null,
+  unit: '%'
+}, {
+  api: 'getOnWaL',
+  boardName: 'WatLevAbo',
+  name: '水位狀態',
+  val: 0,
+  img: null,
+  unit: ""
+}, //
+{
   api: 'getOnWid',
-  boardName: 'WindWayAbo',
+  boardName: 'WindSpeed',
   name: '風向',
   val: 0,
-  img: null
+  img: null,
+  unit: ""
+}, //
+{
+  api: 'getOnLig',
+  boardName: 'LightAbo',
+  name: '燈泡狀態',
+  val: 0,
+  img: null,
+  unit: "" //
+
 }];
-var MaxTop = [50, 20, 30, 50, 10, 50, 60, 60];
+var MaxTop = [48, 100, 9, 800, 60, 15, 100, 100, 0, 0, 150];
 var drowInfo = [];
 var indexApi = new Vue({
   el: "#aboardInternat",
@@ -78769,30 +79091,37 @@ var indexApi = new Vue({
     },
     postDataToChar: function postDataToChar() {
       lodash__WEBPACK_IMPORTED_MODULE_1___default.a.forEach(this.apiNames, function (i, index) {
-        drowInfo[index] = new _drow_js__WEBPACK_IMPORTED_MODULE_2__["DrowInfo"](i.api, i.boardName, i.val, MaxTop[index], i.name);
+        drowInfo[index] = new _drow_js__WEBPACK_IMPORTED_MODULE_2__["DrowInfo"](i.api, i.boardName, i.val, MaxTop[index], i.name, i.unit);
       });
 
-      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[0]);
-      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[1]);
-      apiNames[2].img = Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["WaterLevelChar"])(drowInfo[2]);
-      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[3]);
-      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[4]);
-      apiNames[5].img = Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["LightChange"])(drowInfo[5]);
-      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[6]);
-      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["WindpointerChar"])(drowInfo[7]);
+      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[0]); //溫度
+
+      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[1]); //濕度
+
+      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[2]); //甲烷
+
+      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[3]); //一氧化碳
+
+      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[4]); //累積雨量
+
+      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChardot"])(drowInfo[5]); //水中酸鹼
+
+      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[6]); //土壤濕度
+
+      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["DoardChar"])(drowInfo[7]); //降雨機率
+
+      apiNames[8].img = Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["WaterLevelChar"])(drowInfo[8]); //水位
+
+      Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["WindpointerChar"])(drowInfo[9]); //風向
+
+      apiNames[10].img = Object(_drow_js__WEBPACK_IMPORTED_MODULE_2__["LightChange"])(drowInfo[10]); //亮度
     }
   },
-  //
-  // updated(){  //更新圖檔
-  //     this.postDataToChar();
-  // },
   created: function created() {
     this.getApi();
   },
   mounted: function mounted() {
-    setInterval(this.getApi, 60000);
-    setInterval(this.postDataToChar, 61000);
-    console.log("mounted");
+    setInterval(this.getApi, 60000); // console.log("mounted")
   },
   updated: function updated() {
     this.postDataToChar();
@@ -78822,6 +79151,7 @@ var Faterdata = {
       url: 'PointTag_1',
       title: '智能灑水系統',
       En_title: 'SmartWateing',
+      bord: ['waterlevelInfo', 'waterphInfo', 'soilmonInfo'],
       type: 3,
       visbile: false
     }, {
@@ -78829,6 +79159,7 @@ var Faterdata = {
       url: 'PointTag_2',
       title: '智能燈泡系統',
       En_title: 'SmartLighting',
+      bord: ['lightInfo'],
       type: 3,
       visbile: false
     }, {
@@ -78836,6 +79167,7 @@ var Faterdata = {
       url: 'PointTag_3',
       title: '空品監測系統',
       En_title: 'AirQuality',
+      bord: ['airCOInfo', 'airPH4Info'],
       type: 3,
       visbile: false
     }, {
@@ -78843,6 +79175,7 @@ var Faterdata = {
       url: 'PointTag_4',
       title: '微氣候系統',
       En_title: 'Microclimate',
+      bord: ['123'],
       type: 2,
       visbile: false
     }]
@@ -78858,8 +79191,8 @@ var Faterdata = {
     }
   }
 };
-var TestVueWorkingOn = "Vue working!";
-var ShowCount = 0;
+var ShowCount = 0; //下方顯示部份
+
 var ShowOn = new Vue({
   el: "#ShowOn",
   components: {

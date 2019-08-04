@@ -59,6 +59,15 @@ Route::get('{key?}',function ($key) {
             case 'getOnWid' :
                 $vaule = $SQLData->getWindWay();
                 break;
+            case 'getOnWPH' :
+                $vaule = $SQLData->getWaterPH();
+                break;
+            case 'getOnSHu' :
+                $vaule = $SQLData->getSoilHum();
+                break;
+            case 'getOnRin' :
+                $vaule = $SQLData->getRainSat();
+                break;
         endswitch;
     return $vaule;
 });
