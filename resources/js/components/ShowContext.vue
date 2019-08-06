@@ -6,7 +6,7 @@
                 <div class="InfoSystemBottom">
                     <!-- 儀錶板(視覺化部分) -->
                     <div v-for="(item,index) in showVisPart.bord" class="aboard-Info" v-show="item != ''">
-<!--                        <img :src= getItemName(item) width="120px" height="120px" @click="openModal(item,index)">-->
+<!--                        <img :src= getItemName(item) width="100px" height="100px" @click="openModal(item,index)">-->
                     </div>
                 </div>
                 <div class="InfoSystem">

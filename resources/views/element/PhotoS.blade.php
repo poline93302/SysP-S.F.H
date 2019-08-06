@@ -32,9 +32,9 @@
 @stop
 
 @section('totalBoard')<!--class-->
-<div class="ShowPart AutoCenter">
+<div class="AutoCenter">
     <img src="img/aboardhr.png" />
-    <aboard-get-content :getapinames = "apiNames"> </aboard-get-content>
+    <aboard-get-content :getapinames="apiNames"> </aboard-get-content>
 </div>
 
 @stop

@@ -35,22 +35,6 @@ Vue.component('AboardGetContent' , require('./components/AboardGetContent.vue') 
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-let Faterdata = {
-    data:{
-        ShowVisParts:[/* "inside  outside  farm "  ture 1 false 0 */
-            {id : 1,url : 'PointTag_1',title : '智能灑水系統', En_title : 'SmartWateing'  , bord : ['waterlevelInfo','waterphInfo','soilmonInfo'], type : 3, visbile : false},
-            {id : 2,url : 'PointTag_2',title : '智能燈泡系統', En_title : 'SmartLighting' , bord : ['lightInfo']   , type : 3, visbile : false},
-            {id : 3,url : 'PointTag_3',title : '空品監測系統', En_title : 'AirQuality'    , bord : ['airCOInfo','airPH4Info'] , type : 3, visbile : false},
-            {id : 4,url : 'PointTag_4',title : '微氣候系統'  , En_title : 'Microclimate'  , bord : ['micTmpInfo','micHemInfo','micRainSatInfo','micRainPersInfo','micWindSpeInfo','micWindeWayInfo'] , type : 2, visbile : false}
-        ]},
-    methods:{
-        VisChage(BtnVaule){
-            //點的顯示部分 確認visble為何做出顯示
-            this.ShowVisParts.forEach((ShowVisPart, k)=>{
-                BtnVaule == ShowVisPart.type? this.ShowVisParts[k].visbile = true:  this.ShowVisParts[k].visbile = false;
-            })
-        }
-    }};
 let apiNames = [//api 抓取ＡＰＩ部分 boardName 該borad之d3搜尋後產生檔案 name 該borad 之 名稱
     {api: 'getOnTmp', boardName: 'TempAbo'  , name: '溫度'      , val: 0,img:null ,unit:'℃'},
     {api: 'getOnHum', boardName: 'RelHumAbo', name: '相對濕度'  , val: 0,img:null,unit:'%'},
@@ -70,5 +54,4 @@ const app = new Vue({
     data:{
         'apiNames' : apiNames,
     },
-    mixins:[Faterdata],
 });

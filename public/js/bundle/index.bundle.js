@@ -1880,13 +1880,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var case1 = false,
+    case2 = false,
+    case3 = false,
+    case4 = false;
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BtnContext",
-  props: {
-    btncheck: {
-      type: Function
-    }
-  },
   data: function data() {
     return {
       BtnInfos: [{
@@ -1898,8 +1911,61 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         id: 2,
         BtnName: '室外微氣候'
-      }]
+      }],
+      ShowVisParts: [
+      /* "inside  outside  farm "  ture 1 false 0 */
+      {
+        id: 1,
+        url: 'PointTag_1',
+        title: '智能灑水系統',
+        En_title: 'SmartWateing',
+        bord: ['waterlevelInfo', 'waterphInfo', 'soilmonInfo'],
+        type: 3,
+        visbile: false
+      }, {
+        id: 2,
+        url: 'PointTag_2',
+        title: '智能燈泡系統',
+        En_title: 'SmartLighting',
+        bord: ['lightInfo'],
+        type: 3,
+        visbile: false
+      }, {
+        id: 3,
+        url: 'PointTag_3',
+        title: '空品監測系統',
+        En_title: 'AirQuality',
+        bord: ['airCOInfo', 'airPH4Info'],
+        type: 3,
+        visbile: false
+      }, {
+        id: 4,
+        url: 'PointTag_4',
+        title: '微氣候系統',
+        En_title: 'Microclimate',
+        bord: ['micTmpInfo', 'micHemInfo', 'micRainSatInfo', 'micRainPersInfo', 'micWindSpeInfo', 'micWindeWayInfo'],
+        type: 2,
+        visbile: false
+      }],
+      color: [true, case1, case2, case3, case4]
     };
+  },
+  methods: {
+    VisChage: function VisChage(BtnValue) {
+      var _this = this;
+
+      //點的顯示部分 確認visble為何做出顯示
+      this.ShowVisParts.forEach(function (ShowVisPart, k) {
+        BtnValue == ShowVisPart.type ? _this.ShowVisParts[k].visbile = true : _this.ShowVisParts[k].visbile = false;
+      });
+    },
+    ChangeColor: function ChangeColor(id) {
+      for (var i = 0; i < 5; i++) {
+        this.$set(this.color, i, false);
+      }
+
+      this.$set(this.color, id, true);
+    }
   }
 });
 
@@ -2077,27 +2143,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-var case1 = false,
-    case2 = false,
-    case3 = false,
-    case4 = false;
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TagPoint",
   props: {
     showvisparts: {
       type: Array,
       required: false
+    },
+    color: {
+      type: Array,
+      required: false
     }
   },
   methods: {
     PointEvent: function PointEvent(id) {
-      console.log(id); // for (let i = 0; i <5 ; i++) {
-      //     this.color[id] = false;
-      // }
-      // this.$set(this.color[id], true);
-
-      console.log(id + '123' + this.color[id]); // // this.$set(this.PointInfos[id], 'color', true);
-      // this.color[id] = true
+      console.log('Point');
+      this.$emit('changecolor', id);
     },
     handleScroll: function handleScroll() {// let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       // let scroll_O  = document.body.clientHeight/6 /* scrollTop  / wind  * 100% =   window.innerHeight*0.5*/
@@ -2146,11 +2207,6 @@ var case1 = false,
   },
   mounted: function mounted() {
     window.addEventListener('scroll', this.handleScroll, true);
-  },
-  data: function data() {
-    return {
-      color: [true, case1, case2, case3, case4]
-    };
   }
 });
 
@@ -66447,25 +66503,60 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "InserPartSystem flex", attrs: { id: "ButtonChiled" } },
-    _vm._l(_vm.BtnInfos, function(BtnInfo) {
-      return _c(
-        "button",
-        {
-          attrs: { value: BtnInfo.id },
-          on: {
-            click: function($event) {
-              return _vm.btncheck(BtnInfo.id)
-            }
-          }
-        },
-        [_vm._v("\n        " + _vm._s(BtnInfo.BtnName) + "\n    ")]
+    [
+      _c("tag-point", {
+        attrs: { showvisparts: _vm.ShowVisParts, color: _vm.color },
+        on: { changecolor: _vm.ChangeColor }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "InserPartSystem flex", attrs: { id: "ButtonChiled" } },
+        _vm._l(_vm.BtnInfos, function(BtnInfo) {
+          return _c(
+            "button",
+            {
+              attrs: { value: BtnInfo.id },
+              on: {
+                click: function($event) {
+                  return _vm.VisChage(BtnInfo.id)
+                }
+              }
+            },
+            [_vm._v("\n            " + _vm._s(BtnInfo.BtnName) + "\n        ")]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "isShow" },
+        _vm._l(_vm.ShowVisParts, function(ShowVisPart) {
+          return _c(
+            "div",
+            [_c("show-context", { attrs: { "show-vis-part": ShowVisPart } })],
+            1
+          )
+        }),
+        0
       )
-    }),
-    0
+    ],
+    1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "holler" }, [
+      _c("img", { attrs: { src: "img/hr.png" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -78855,55 +78946,6 @@ Vue.component('AboardGetContent', __webpack_require__(/*! ./components/AboardGet
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var Faterdata = {
-  data: {
-    ShowVisParts: [
-    /* "inside  outside  farm "  ture 1 false 0 */
-    {
-      id: 1,
-      url: 'PointTag_1',
-      title: '智能灑水系統',
-      En_title: 'SmartWateing',
-      bord: ['waterlevelInfo', 'waterphInfo', 'soilmonInfo'],
-      type: 3,
-      visbile: false
-    }, {
-      id: 2,
-      url: 'PointTag_2',
-      title: '智能燈泡系統',
-      En_title: 'SmartLighting',
-      bord: ['lightInfo'],
-      type: 3,
-      visbile: false
-    }, {
-      id: 3,
-      url: 'PointTag_3',
-      title: '空品監測系統',
-      En_title: 'AirQuality',
-      bord: ['airCOInfo', 'airPH4Info'],
-      type: 3,
-      visbile: false
-    }, {
-      id: 4,
-      url: 'PointTag_4',
-      title: '微氣候系統',
-      En_title: 'Microclimate',
-      bord: ['micTmpInfo', 'micHemInfo', 'micRainSatInfo', 'micRainPersInfo', 'micWindSpeInfo', 'micWindeWayInfo'],
-      type: 2,
-      visbile: false
-    }]
-  },
-  methods: {
-    VisChage: function VisChage(BtnVaule) {
-      var _this = this;
-
-      //點的顯示部分 確認visble為何做出顯示
-      this.ShowVisParts.forEach(function (ShowVisPart, k) {
-        BtnVaule == ShowVisPart.type ? _this.ShowVisParts[k].visbile = true : _this.ShowVisParts[k].visbile = false;
-      });
-    }
-  }
-};
 var apiNames = [//api 抓取ＡＰＩ部分 boardName 該borad之d3搜尋後產生檔案 name 該borad 之 名稱
 {
   api: 'getOnTmp',
@@ -78990,8 +79032,7 @@ var app = new Vue({
   el: '#app',
   data: {
     'apiNames': apiNames
-  },
-  mixins: [Faterdata]
+  }
 });
 
 /***/ }),

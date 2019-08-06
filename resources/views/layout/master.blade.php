@@ -27,19 +27,8 @@
             @yield('totalBoard')
         </div>
     </div>
-    <!-- 左方point -->
-    <tag-point :showvisparts="ShowVisParts"></tag-point>
     {{--<!-- 選則顯示部份 -->--}}
-    <btn-context :btncheck="VisChage"></btn-context>
-    <div class="holler">
-        <img src="img/hr.png" />
-    </div>
-    {{--<!-- 查詢結果 -->--}}
-    <div class="isShow">
-        <div v-for="ShowVisPart in ShowVisParts">
-            <show-context :show-vis-part = "ShowVisPart"> </show-context>
-        </div>
-    </div>
+    <btn-context> </btn-context>
 
     {{--  下腳   --}}
     <footer>

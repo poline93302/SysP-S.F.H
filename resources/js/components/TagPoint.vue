@@ -15,28 +15,22 @@
 </template>
 
 <script>
-    let case1 = false,case2 = false,case3 = false,case4 = false;
     export default {
         name: "TagPoint",
         props:{
             showvisparts:{
                 type:Array,
                 required:false,
+            },
+            color:{
+                type:Array,
+                required: false,
             }
         },
         methods:{
             PointEvent(id) {
-                console.log(id);
-
-                // for (let i = 0; i <5 ; i++) {
-                //     this.color[id] = false;
-                // }
-
-                // this.$set(this.color[id], true);
-                console.log(id + '123' + this.color[id])
-
-                // // this.$set(this.PointInfos[id], 'color', true);
-                // this.color[id] = true
+                console.log('Point');
+                this.$emit('changecolor',id);
             },
             handleScroll(){
                 // let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
@@ -67,13 +61,6 @@
         },
         mounted(){
             window.addEventListener('scroll', this.handleScroll, true);
-        },
-        data(){
-            return{
-                color:[
-                    true,case1,case2,case3,case4
-                ],
-            }
         },
     }
 </script>
