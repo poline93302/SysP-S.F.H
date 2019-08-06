@@ -16,6 +16,4 @@ const mix = require('laravel-mix');
 
 mix.js([
     'resources/js/app.js',
-    'resources/js/isShow.js',
-    'resources/js/indexApi.js'
 ], 'public/js/bundle/index.bundle.js')

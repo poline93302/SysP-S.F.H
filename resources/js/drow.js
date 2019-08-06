@@ -32,7 +32,7 @@ export function DoardChar(drowInfo){
     let duration    = 500;                                      //動畫時間
     let data       = drowInfo.data;                             //當下數值
 
-    //svg 搜尋
+    //svg 搜尋2
     let svg = d3.select('#' + drowInfo.d3Scale).attr('height',size +'px').attr('width',size +'px');
 
     //-60度 開始 計算 算出此val 數值佔多少份 一份 ＝3度 (dara/rang)*300 後 轉徑度 即可得x,y
@@ -252,47 +252,47 @@ export function WindpointerChar(drowInfo){
 
 
     //{     刻度
-        for(let major = data; major <= data+315 ;major += majorDelta){
-            let minMajor =  majorDelta /scaleSml ;
-            let getStartPointLag = getPoint(major,0.85,80,cx,cy);
+    for(let major = data; major <= data+315 ;major += majorDelta){
+        let minMajor =  majorDelta /scaleSml ;
+        let getStartPointLag = getPoint(major,0.85,80,cx,cy);
 
-            for(let minMajorDe = major ; minMajorDe <= major+minMajor ; minMajorDe += minMajor){
-                let getStartPoint = getPoint(minMajorDe,0.9,radius,cx,cy);
-                let getEndPoint   = getPoint(minMajorDe,0.8,radius,cx,cy);
+        for(let minMajorDe = major ; minMajorDe <= major+minMajor ; minMajorDe += minMajor){
+            let getStartPoint = getPoint(minMajorDe,0.9,radius,cx,cy);
+            let getEndPoint   = getPoint(minMajorDe,0.8,radius,cx,cy);
 
-                if(minMajorDe % 45){
-                    svg.append('line')
-                        .attr('x1',getStartPoint.Px)
-                        .attr('y1',getStartPoint.Py)
-                        .attr('x2',getEndPoint.Px)
-                        .attr('y2',getEndPoint.Py)
-                        .style('stroke',"#fff")
-                        .style('stroke-width', "1px");
-                }
+            if(minMajorDe % 45){
+                svg.append('line')
+                    .attr('x1',getStartPoint.Px)
+                    .attr('y1',getStartPoint.Py)
+                    .attr('x2',getEndPoint.Px)
+                    .attr('y2',getEndPoint.Py)
+                    .style('stroke',"#fff")
+                    .style('stroke-width', "1px");
             }
-
-            svg.append('path')
-                .attr('d',
-                        d3.arc()                     //架設路徑
-                        .startAngle((major-textStartMin)/180*Math.PI)
-                        .endAngle((major+textStartMax)/180*Math.PI)
-                        .innerRadius(0.80 * radius)
-                        .outerRadius(0.75 * radius)
-                )
-                .attr("transform",function(){
-                    return "translate(" + cx + "," + cy + ")"
-                })
-                .style("fill",'none')
-                .attr('id','pathText_'+indexGo);
-
-            svg.append('text')
-                .append('textPath')
-                .attr('link:href',"#pathText_"+indexGo)
-                .style('fill','#fff')
-                .style('font-size',"12px")
-                .text(spinWay[indexGo]);
-            indexGo ++;
         }
+
+        svg.append('path')
+            .attr('d',
+                d3.arc()                     //架設路徑
+                    .startAngle((major-textStartMin)/180*Math.PI)
+                    .endAngle((major+textStartMax)/180*Math.PI)
+                    .innerRadius(0.80 * radius)
+                    .outerRadius(0.75 * radius)
+            )
+            .attr("transform",function(){
+                return "translate(" + cx + "," + cy + ")"
+            })
+            .style("fill",'none')
+            .attr('id','pathText_'+indexGo);
+
+        svg.append('text')
+            .append('textPath')
+            .attr('link:href',"#pathText_"+indexGo)
+            .style('fill','#fff')
+            .style('font-size',"12px")
+            .text(spinWay[indexGo]);
+        indexGo ++;
+    }
     //}
     // console.log(data);
 };

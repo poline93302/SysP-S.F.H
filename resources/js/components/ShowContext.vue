@@ -6,9 +6,7 @@
                 <div class="InfoSystemBottom">
                     <!-- 儀錶板(視覺化部分) -->
                     <div v-for="(item,index) in showVisPart.bord" class="aboard-Info" v-show="item != ''">
-<!--                        {{item}}-->
-                        <!--                                        onclick="location.href='#';"+".png"-->
-                        <img :src= getItemName(item) width="120px" height="120px" >
+<!--                        <img :src= getItemName(item) width="120px" height="120px" @click="openModal(item,index)">-->
                     </div>
                 </div>
                 <div class="InfoSystem">
@@ -33,12 +31,16 @@
         <div class="holler">
             <img src="img/hr.png" />
         </div>
+            <!--byModal-->
+            <show-history :items= showVisPart.bord :clickItem="showVisPart.bord[0]" class="place-hide"> </show-history>
     </div>
-    <!--        </div>-->
-    <!--    </div>-->
+
 </template>
 
 <script>
+
+    // let ShowHistory = 'ShowHistory.vue';
+
     export default {
         name: "ShowContext",
         props: {
@@ -58,12 +60,15 @@
                 }
             },
         },
+        // components:{
+        //     'show-history' : ShowHistory,
+        // },
         methods: {
             openSelfFile(path) {
                 //路徑定義
                 let realpath = 'http://localhost:8000/selftxt/' + path + 'Self.txt';
 
-                //利用fetch得到 txt 內文（嘗試 利用txt 書寫html） !!:key:!! fetch return Promise
+                //利用fetch得到 txt 內文 !!:key:!! fetch return Promise
                 fetch(realpath,{
                     method : 'GET' ,
                     headers: new Headers({
@@ -88,10 +93,15 @@
             getItemName(item) {
                 if(item !== ' ')
                     return '/img/'+item + '.png';
+            },
+
+            openModal(id,index){
+                let open =  document.getElementById(id+'Modal');
+
+                console.log('AAA Click');
+                console.log(open);
             }
+
         },
-        // data:[
-        //     {title: this.showVisPart.title,api :"",Context : ""},   //water => getApi , name , context
-        // ]B
     }
 </script>

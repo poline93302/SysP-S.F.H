@@ -294,12 +294,19 @@ footer >p{
 .InfoTitle>.InfoBitle{
   font-size: 18px;
 }
+
+.place-hide{
+  display: none;
+}
 /*      */
 
 /* 滑出動畫 */
 @keyframes SlowShow{
   0%{
     width:0%;
+  }
+  70%{
+    width:60%;
   }
   100%{
     width:60%;
@@ -309,7 +316,7 @@ footer >p{
 @keyframes Fade{
   0%{
     opacity: 0;
-  }70%{
+  }60%{
      opacity: 0;
    }100%{
       opacity: 1;
