@@ -19,10 +19,9 @@ class CreateUserconfigTable extends Migration
             $table->string('sensorname');
             $table->string('mode');
             $table->integer('value');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->date('start_time');
+            $table->date('end_time');
             $table->boolean('switch');
-
         });
     }
 

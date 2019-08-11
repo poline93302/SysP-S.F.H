@@ -120,4 +120,13 @@ class SysInfoDBService
     {
         return $this->smartWeather->getWindWay()[0];
     }
+
+    /**
+     * return 該使用者之所有設定資料
+     */
+
+    public function get_user_config()
+    {
+        return $this->userConfig->getconfig();
+    }
 }
